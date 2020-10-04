@@ -1,0 +1,95 @@
+#eyebrow-l
+  top: 28%
+  left: 24%
+  width: 23%
+#eyebrow-r
+  top: 28%
+  right: 24%
+  width: 23%
+#eye-l
+  top: 32%
+  left: 25%
+  width: 22%
+#eye-r
+  top: 32%
+  right: 25%
+  width: 22%
+#mouth
+  top: 48.5%
+  left: 28.5%
+  width: 43%
+#noise
+  top: 39.5%
+  left: 40%
+  width: 20%
+
+
+.face-part
+  position: absolute
+  display: table
+  transform: translate(0, 0) scaleX(1) scaleY(1) rotate(0deg);
+  span
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index 2
+  .control
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index 3
+    display: none
+
+    .fas
+      width: 30px
+      height: 30px
+      display: flex
+      font-size: 18px
+      color: white
+      position: absolute
+      border-radius: 50%
+      align-items: center
+      background: #7da3c1
+      justify-content: center
+      border: solid 2px #52637b
+      cursor pointer
+
+      &.fa-trash-alt
+        top: 0
+        right: 0
+        background: #a52914
+        border-color: #5c1100
+        transform: translate(50%, -50%)
+
+      &.fa-sync-alt
+        bottom: 0
+        left: 0
+        transform: translate(-50%, 50%)
+
+      &.fa-arrows-alt
+        position: absolute
+        bottom: 0
+        right: 0
+        transform: translate(50%, 50%)
+
+      &.fa-expand-alt
+        position: absolute
+        top: 0
+        left: 0
+        transform: translate(-50%, -50%)
+
+      &.fa-arrows-alt-h
+        position: absolute
+        top: 50%
+        left: 0
+        transform: translate(-50%, -50%)
+
+      &.fa-arrows-alt-v
+        position: absolute
+        bottom: 0
+        left: 50%
+        transform: translate(-50%, 50%)

@@ -1,21 +1,29 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div id="me-sims">
+  <div id="tracos">
+    <div id="name-box">
+      <img src="/assets/img/icon-sims.png" alt="Icon Sims" />
+      <input type="text" placeholder="Meu Nome" value="Vitor Zortéa" />
+    </div>
+    <img src="/assets/img/tracos.png" alt="Traços" />
+  </div>
+  <div id="main-face">
+    <i></i>
+    <img src="/assets/img/base.png" alt="Vitor Zortéa" />
+    <span *ngFor="let part of parts">
+      <app-face-part [part]="part"></app-face-part>
+    </span>
+  </div>
+  <div id="info-vitor">
+    <h1><img src="/assets/img/logo.png" alt="Me Sims" /></h1>
+  </div>
+  <footer>
+    <button id="full-vitor">
+      <img src="/assets/img/full-vitor.png" alt="Vitor Zortéa" />
+    </button>
+    <div id="menu">
+      <a href="#" target="_blank"><i class="fab fa-github-square"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-whatsapp-square"></i></a>
+    </div>
+  </footer>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
