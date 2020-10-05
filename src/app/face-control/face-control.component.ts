@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FaceControlComponent implements OnInit {
 
-  parts = [
+  constructor() { }
+
+
+
+  public selectPart = -1;
+  public parts = [
     {id: 'eye-l', alt: 'Eye', img: 'olho', select: false},
     {id: 'eye-r', alt: 'Eye', img: 'olho-r', select: false},
     {id: 'eyebrow-l', alt: 'Eyebrow', img: 'so', select: false},
@@ -15,58 +20,35 @@ export class FaceControlComponent implements OnInit {
     {id: 'mouth', alt: 'Mouth', img: 'boca', select: false},
     {id: 'noise', alt: 'Noise', img: 'nariz', select: false},
   ];
+  ngOnInit() {}
 
-  constructor() { }
-  ngOnInit() { }
-
-  changeSelect(type) {
+  changeSelect(type, numberSelect) {
     const parts = document.querySelectorAll('.face-part');
+    const rangers = document.querySelector('#rangers');
     const funtionsCall = {
-      eyebrow : () => { callEyebrow(); },
-      eye : () => { callEye(); },
-      noise: () => { callNoise(); },
-      mouth: () => { callMouth(); }
+      duplo : () => { this.changeDuplo(numberSelect); },
+      unico : () => { this.changeUnico(numberSelect); },
     };
-
     funtionsCall[type]();
+    parts.forEach((e, i) => { (i !== this.selectPart) ? e.classList.remove('select') : e.classList.add('select'); });
+    this.parts.forEach((e, i) => { (i !== this.selectPart) ? e.select = false : e.select = true; });
+    (this.selectPart !== -1) ? rangers.classList.add('select') : rangers.classList.remove('select');
+  }
 
-
-    function deselect(inter) {
-      parts.forEach((e, i) => {
-        if (i !== inter) {
-          e.classList.remove('select');
-        }
-      });
+  changeDuplo(numberSelect) {
+    if (this.selectPart === numberSelect) {
+      this.selectPart = (numberSelect + 1);
+    } else if (this.selectPart === (numberSelect + 1)) {
+      this.selectPart = -1;
+    } else {
+      this.selectPart = numberSelect;
     }
-    function callEyebrow() {
-      if (!parts[2].classList.contains('select') && !parts[3].classList.contains('select')) {
-        deselect(-1);
-        parts[2].classList.add('select');
-      } else if (!parts[3].classList.contains('select') && parts[2].classList.contains('select')) {
-        deselect(-1);
-        parts[3].classList.add('select');
-      } else {
-        deselect(-1);
-      }
-    }
-    function callEye() {
-      if (!parts[0].classList.contains('select') && !parts[1].classList.contains('select')) {
-        deselect(-1);
-        parts[0].classList.add('select');
-      } else if (!parts[1].classList.contains('select') && parts[0].classList.contains('select')) {
-        deselect(-1);
-        parts[1].classList.add('select');
-      } else {
-        deselect(-1);
-      }
-    }
-    function callNoise() {
-      deselect(5);
-      parts[5].classList.toggle('select');
-    }
-    function callMouth() {
-      deselect(4);
-      parts[4].classList.toggle('select');
+  }
+  changeUnico(numberSelect) {
+    if (this.selectPart === numberSelect) {
+      this.selectPart = -1;
+    } else {
+      this.selectPart = numberSelect;
     }
   }
 
