@@ -1,0 +1,19 @@
+<div id="main-face">
+  <i></i>
+  <img src="/assets/img/base.png" alt="Vitor Zortéa" />
+  <app-face-part *ngFor="let part of parts" [part]="part" id={{part.id}} class="face-part"></app-face-part>
+  <span id="botoes">
+    <button (click)="changeSelect('eyebrow')">
+      <img src="/assets/img/btn-1.png" alt="Sombrancelha">
+    </button>
+    <button (click)="changeSelect('eye')">
+      <img src="/assets/img/btn-2.png" alt="Olho">
+    </button>
+    <button (click)="changeSelect('noise')">
+      <img src="/assets/img/btn-3.png" alt="Nariz">
+    </button>
+    <button (click)="changeSelect('mouth')">
+      <img src="/assets/img/btn-4.png" alt="Boca">
+    </button>
+  </span>
+</div>

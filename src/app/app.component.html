@@ -6,13 +6,7 @@
     </div>
     <img src="/assets/img/tracos.png" alt="Traços" />
   </div>
-  <div id="main-face">
-    <i></i>
-    <img src="/assets/img/base.png" alt="Vitor Zortéa" />
-    <span *ngFor="let part of parts">
-      <app-face-part [part]="part"></app-face-part>
-    </span>
-  </div>
+  <app-face-control></app-face-control>
   <div id="info-vitor">
     <h1><img src="/assets/img/logo.png" alt="Me Sims" /></h1>
   </div>

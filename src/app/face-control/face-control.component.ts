@@ -1,12 +1,12 @@
-import { FunctionCall } from '@angular/compiler';
-import { Component, OnInit, Query } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.styl']
+  selector: 'app-face-control',
+  templateUrl: './face-control.component.html',
+  styleUrls: ['./face-control.component.styl']
 })
-export class AppComponent implements OnInit {
+export class FaceControlComponent implements OnInit {
+
   parts = [
     {id: 'eye-l', alt: 'Eye', img: 'olho', select: false},
     {id: 'eye-r', alt: 'Eye', img: 'olho-r', select: false},
@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
     {id: 'mouth', alt: 'Mouth', img: 'boca', select: false},
     {id: 'noise', alt: 'Noise', img: 'nariz', select: false},
   ];
+
+  constructor() { }
   ngOnInit() { }
 
   changeSelect(type) {
@@ -67,4 +69,6 @@ export class AppComponent implements OnInit {
       parts[4].classList.toggle('select');
     }
   }
+
+
 }

@@ -1,33 +1,4 @@
-#eyebrow-l
-  top: 28%
-  left: 24%
-  width: 23%
-#eyebrow-r
-  top: 28%
-  right: 24%
-  width: 23%
-#eye-l
-  top: 32%
-  left: 25%
-  width: 22%
-#eye-r
-  top: 32%
-  right: 25%
-  width: 22%
-#mouth
-  top: 48.5%
-  left: 28.5%
-  width: 43%
-#noise
-  top: 39.5%
-  left: 40%
-  width: 20%
 
-
-.face-part
-  position: absolute
-  display: table
-  transform: translate(0, 0) scaleX(1) scaleY(1) rotate(0deg);
   span
     position: absolute
     top: 0
@@ -35,6 +6,7 @@
     width: 100%
     height: 100%
     z-index 2
+
   .control
     position: absolute
     top: 0
@@ -43,6 +15,10 @@
     height: 100%
     z-index 3
     display: none
+  &.select
+    z-index 100
+  &.select .control
+    display: block
 
     .fas
       width: 30px

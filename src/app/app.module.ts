@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SkillComponent } from './skill/skill.component';
 import { JobComponent } from './job/job.component';
 import { FacePartComponent } from './face-part/face-part.component';
+import { FaceControlComponent } from './face-control/face-control.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { FacePartComponent } from './face-part/face-part.component';
     ProfileComponent,
     SkillComponent,
     JobComponent,
-    FacePartComponent
+    FacePartComponent,
+    FaceControlComponent
   ],
   imports: [
     BrowserModule,

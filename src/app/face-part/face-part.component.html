@@ -1,12 +1,11 @@
-
-<div id={{part.id}} class="face-part">
+<div>
   <img src="/assets/img/{{part.img}}.png" alt={{part.alt}}><span></span>
   <div class="control">
-    <i class="fas fa-arrows-alt-v"></i>
-    <i class="fas fa-arrows-alt-h"></i>
-    <i class="fas fa-expand-alt"></i>
-    <i class="fas fa-arrows-alt"></i>
-    <i class="fas fa-sync-alt"></i>
-    <i class="fas fa-trash-alt"></i>
+    <i id="sizewh-{{part.id}}" class="fas fa-expand-alt"></i>
+    <i id="sizew-{{part.id}}" class="fas fa-arrows-alt-h"></i>
+    <i id="rotate-{{part.id}}" class="fas fa-sync-alt"></i>
+    <i id="sizeh-{{part.id}}" class="fas fa-arrows-alt-v" (dragover)="test($event)" (dragleave)="testFim($event)"></i>
+    <i id="move-{{part.id}}" class="fas fa-arrows-alt"></i>
+    <i id="trash-{{part.id}}" class="fas fa-trash-alt"></i>
   </div>
 </div>
