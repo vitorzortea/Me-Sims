@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
     {id: 'mouth', alt: 'Mouth', img: 'boca', select: false},
     {id: 'noise', alt: 'Noise', img: 'nariz', select: false},
   ];
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   changeSelect(type) {
     const parts = document.querySelectorAll('.face-part');

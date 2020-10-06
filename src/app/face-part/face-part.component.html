@@ -1,12 +1,4 @@
 <div>
-  <img src="/assets/img/{{part.img}}.png" alt={{part.alt}}><span></span>
-  <div *ngIf="part.select" class="capa-select" (mouseover)="test($event)"></div>
-  <div class="control">
-    <i id="sizewh-{{part.id}}" class="fas fa-expand-alt" (dragover)="test($event)" (dragleave)="testFim($event)"></i>
-    <i id="sizew-{{part.id}}" class="fas fa-arrows-alt-h"></i>
-    <i id="rotate-{{part.id}}" class="fas fa-sync-alt"></i>
-    <i id="sizeh-{{part.id}}" class="fas fa-arrows-alt-v"></i>
-    <i id="move-{{part.id}}" class="fas fa-arrows-alt"></i>
-    <i id="trash-{{part.id}}" class="fas fa-trash-alt"></i>
-  </div>
+  <img src="/assets/img/{{part.img}}.png" draggable="false" alt={{part.alt}}><span></span>
+  <div *ngIf="part.select" class="capa-select"></div>
 </div>

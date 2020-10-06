@@ -1,5 +1,4 @@
 <div id="main-face">
-  <i></i>
   <span id="rangers">
     <p>
       <i class="fas fa-arrows-alt-h"></i>
@@ -14,8 +13,14 @@
       <input type="range" orient="vertical" />
     </p>
   </span>
-  <img src="/assets/img/base.png" alt="Vitor Zortéa" />
-  <app-face-part *ngFor="let part of parts" [part]="part" id={{part.id}} class="face-part"></app-face-part>
+  <img src="/assets/img/base.png" draggable="false" alt="Vitor Zortéa" />
+  <app-face-part
+    *ngFor="let part of parts"
+    [part]="part"
+    id={{part.id}}
+    class="face-part"
+    (mousedown)="move($event, part.id)"
+  ></app-face-part>
   <span id="botoes">
     <button (click)="changeSelect('duplo', 2)">
       <img src="/assets/img/btn-1.png" alt="Sombrancelha">
