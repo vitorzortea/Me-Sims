@@ -1,5 +1,6 @@
 import { FunctionCall } from '@angular/compiler';
 import { Component, OnInit, Query } from '@angular/core';
+import { PartesService } from './partes.service';
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,9 @@ import { Component, OnInit, Query } from '@angular/core';
   styleUrls: ['./app.component.styl']
 })
 export class AppComponent implements OnInit {
-  parts = [
-    {id: 'eye-l', alt: 'Eye', img: 'olho', select: false},
-    {id: 'eye-r', alt: 'Eye', img: 'olho-r', select: false},
-    {id: 'eyebrow-l', alt: 'Eyebrow', img: 'so', select: false},
-    {id: 'eyebrow-r', alt: 'Eyebrow', img: 'so-r', select: false},
-    {id: 'mouth', alt: 'Mouth', img: 'boca', select: false},
-    {id: 'noise', alt: 'Noise', img: 'nariz', select: false},
-  ];
+  constructor(
+    public partes: PartesService
+  ) { }
   ngOnInit() {
   }
 
@@ -67,5 +63,15 @@ export class AppComponent implements OnInit {
       deselect(4);
       parts[4].classList.toggle('select');
     }
+  }
+
+  resetface() {
+    this.partes.parts.forEach(e => {
+      e.sizeX = 1;
+      e.sizeY = 1;
+      e.rotate = 0;
+      const elementDom = document.querySelector('#' + e.id) as HTMLElement;
+      elementDom.removeAttribute('style');
+    });
   }
 }

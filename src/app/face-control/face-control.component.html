@@ -16,6 +16,7 @@
       <i class="fas fa-arrows-alt-v"></i>
       <input
         formControlName="sizeY"
+        (mousemove)="changeSizeY()"
         id="scroll-y"
         type="range"
         orient="vertical"
@@ -27,17 +28,18 @@
       <i class="fas fa-sync-alt"></i>
       <input
         formControlName="rotate"
+        (mousemove)="changeRotate()"
         id="scroll-deg"
         type="range"
         orient="vertical"
-        min="500"
-        max="1500"
+        min="-360"
+        max="360"
       />
     </p>
   </span>
   <img src="/assets/img/base.png" draggable="false" alt="Vitor Zortéa" />
   <app-face-part
-    *ngFor="let part of parts"
+    *ngFor="let part of partes.parts"
     [part]="part"
     id={{part.id}}
     class="face-part"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { PartesService } from '../partes.service';
 
 @Component({
   selector: 'app-face-control',
@@ -9,18 +10,12 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class FaceControlComponent implements OnInit {
   public control: FormGroup;
   public selectPart = -1;
-  public parts = [
-    {id: 'eye-l', alt: 'Eye', img: 'olho', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-    {id: 'eye-r', alt: 'Eye', img: 'olho-r', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-    {id: 'eyebrow-l', alt: 'Eyebrow', img: 'so', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-    {id: 'eyebrow-r', alt: 'Eyebrow', img: 'so-r', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-    {id: 'noise', alt: 'Noise', img: 'nariz', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-    {id: 'mouth', alt: 'Mouth', img: 'boca', sizeX: 1, sizeY: 1, rotate: 1, select: false},
-  ];
   constructor(
     public fb: FormBuilder,
+    public partes: PartesService
   ) { }
   ngOnInit() {
+    console.log(this.partes.parts);
     this.control = this.fb.group({
       sizeY: new FormControl(1000),
       sizeX: new FormControl(1000),
@@ -37,12 +32,12 @@ export class FaceControlComponent implements OnInit {
     };
     funtionsCall[type]();
     if (this.selectPart >= 0) {
-      this.control.controls.sizeX.setValue(this.parts[this.selectPart].sizeX * 1000);
-      this.control.controls.sizeY.setValue(this.parts[this.selectPart].sizeY * 1000);
-      this.control.controls.rotate.setValue(this.parts[this.selectPart].rotate * 1000);
+      this.control.controls.sizeX.setValue(this.partes.parts[this.selectPart].sizeX * 1000);
+      this.control.controls.sizeY.setValue(this.partes.parts[this.selectPart].sizeY * 1000);
+      this.control.controls.rotate.setValue(this.partes.parts[this.selectPart].rotate * 1000);
     }
     parts.forEach((e, i) => { (i !== this.selectPart) ? e.classList.remove('select') : e.classList.add('select'); });
-    this.parts.forEach((e, i) => { (i !== this.selectPart) ? e.select = false : e.select = true; });
+    this.partes.parts.forEach((e, i) => { (i !== this.selectPart) ? e.select = false : e.select = true; });
     (this.selectPart !== -1) ? rangers.classList.add('select') : rangers.classList.remove('select');
   }
   changeDuplo(numberSelect) {
@@ -76,7 +71,6 @@ export class FaceControlComponent implements OnInit {
       clicado.style.top = (e.clientY - (eve.path[2].clientHeight / 2)) + 'px';
       clicado.style.left = (e.clientX - (eve.path[2].clientWidth / 2)) + 'px';
     }
-
     function mouseUp(e) {
       clicado.style.transform = '';
       const partCoordenadas = clicado.getBoundingClientRect();
@@ -102,9 +96,23 @@ export class FaceControlComponent implements OnInit {
   }
   changeSizeX() {
     if (this.selectPart !== -1) {
-      this.parts[this.selectPart].sizeX = this.control.controls.sizeX.value / 1000;
-      const elementSelect = document.querySelector('#' + this.parts[this.selectPart].id) as HTMLElement;
-      elementSelect.style.transform = this.takeStyle(this.parts[this.selectPart]);
+      this.partes.parts[this.selectPart].sizeX = this.control.controls.sizeX.value / 1000;
+      const elementSelect = document.querySelector('#' + this.partes.parts[this.selectPart].id) as HTMLElement;
+      elementSelect.style.transform = this.takeStyle(this.partes.parts[this.selectPart]);
+    }
+  }
+  changeSizeY() {
+    if (this.selectPart !== -1) {
+      this.partes.parts[this.selectPart].sizeY = this.control.controls.sizeY.value / 1000;
+      const elementSelect = document.querySelector('#' + this.partes.parts[this.selectPart].id) as HTMLElement;
+      elementSelect.style.transform = this.takeStyle(this.partes.parts[this.selectPart]);
+    }
+  }
+  changeRotate() {
+    if (this.selectPart !== -1) {
+      this.partes.parts[this.selectPart].rotate = this.control.controls.rotate.value;
+      const elementSelect = document.querySelector('#' + this.partes.parts[this.selectPart].id) as HTMLElement;
+      elementSelect.style.transform = this.takeStyle(this.partes.parts[this.selectPart]);
     }
   }
 
