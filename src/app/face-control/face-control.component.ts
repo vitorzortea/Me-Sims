@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-face-control',
@@ -6,21 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./face-control.component.styl']
 })
 export class FaceControlComponent implements OnInit {
-
-  constructor() { }
-
-
-
+  public control: FormGroup;
   public selectPart = -1;
   public parts = [
-    {id: 'eye-l', alt: 'Eye', img: 'olho', select: false},
-    {id: 'eye-r', alt: 'Eye', img: 'olho-r', select: false},
-    {id: 'eyebrow-l', alt: 'Eyebrow', img: 'so', select: false},
-    {id: 'eyebrow-r', alt: 'Eyebrow', img: 'so-r', select: false},
-    {id: 'noise', alt: 'Noise', img: 'nariz', select: false},
-    {id: 'mouth', alt: 'Mouth', img: 'boca', select: false},
+    {id: 'eye-l', alt: 'Eye', img: 'olho', sizeX: 1, sizeY: 1, rotate: 1, select: false},
+    {id: 'eye-r', alt: 'Eye', img: 'olho-r', sizeX: 1, sizeY: 1, rotate: 1, select: false},
+    {id: 'eyebrow-l', alt: 'Eyebrow', img: 'so', sizeX: 1, sizeY: 1, rotate: 1, select: false},
+    {id: 'eyebrow-r', alt: 'Eyebrow', img: 'so-r', sizeX: 1, sizeY: 1, rotate: 1, select: false},
+    {id: 'noise', alt: 'Noise', img: 'nariz', sizeX: 1, sizeY: 1, rotate: 1, select: false},
+    {id: 'mouth', alt: 'Mouth', img: 'boca', sizeX: 1, sizeY: 1, rotate: 1, select: false},
   ];
-  ngOnInit() {}
+  constructor(
+    public fb: FormBuilder,
+  ) { }
+  ngOnInit() {
+    this.control = this.fb.group({
+      sizeY: new FormControl(1000),
+      sizeX: new FormControl(1000),
+      rotate: new FormControl(1000),
+    });
+  }
 
   changeSelect(type, numberSelect) {
     const parts = document.querySelectorAll('.face-part');
@@ -30,6 +36,11 @@ export class FaceControlComponent implements OnInit {
       unico : () => { this.changeUnico(numberSelect); },
     };
     funtionsCall[type]();
+    if (this.selectPart >= 0) {
+      this.control.controls.sizeX.setValue(this.parts[this.selectPart].sizeX * 1000);
+      this.control.controls.sizeY.setValue(this.parts[this.selectPart].sizeY * 1000);
+      this.control.controls.rotate.setValue(this.parts[this.selectPart].rotate * 1000);
+    }
     parts.forEach((e, i) => { (i !== this.selectPart) ? e.classList.remove('select') : e.classList.add('select'); });
     this.parts.forEach((e, i) => { (i !== this.selectPart) ? e.select = false : e.select = true; });
     (this.selectPart !== -1) ? rangers.classList.add('select') : rangers.classList.remove('select');
@@ -51,10 +62,9 @@ export class FaceControlComponent implements OnInit {
     }
   }
 
-
-
-  move(eve, id) {
-    const clicado = document.querySelector('#' + id) as HTMLElement;
+  move(eve, part) {
+    const clicado = document.querySelector('#' + part.id) as HTMLElement;
+    const transformBack = this.takeStyle(part);
     const faceCoordenadas = document.querySelector('#main-face>img').getBoundingClientRect();
     clicado.addEventListener('mousemove', mouseMove);
     clicado.addEventListener( 'mouseup', mouseUp);
@@ -68,25 +78,34 @@ export class FaceControlComponent implements OnInit {
     }
 
     function mouseUp(e) {
+      clicado.style.transform = '';
       const partCoordenadas = clicado.getBoundingClientRect();
-      let pxY = partCoordenadas.top - faceCoordenadas.top + .1;
-      let pxX = partCoordenadas.left - faceCoordenadas.left + .1;
-      if (pxY < 0) { pxY = 0; }
-      if (pxX < 0) { pxX = 0; }
-      if (pxY > (faceCoordenadas.height - partCoordenadas.height)) { pxX = faceCoordenadas.height - partCoordenadas.height; }
-      if (pxX > (faceCoordenadas.width - partCoordenadas.width)) { pxX = faceCoordenadas.width - partCoordenadas.width; }
-      const porcentY = (pxY * 100) / faceCoordenadas.height;
-      const porcentX = (pxX * 100) / faceCoordenadas.width;
+
+      const AbsolutePxY = partCoordenadas.top - faceCoordenadas.top;
+      const AbsolutePxX =  partCoordenadas.left - faceCoordenadas.left;
+
+      const porcentY = (AbsolutePxY * 100) / faceCoordenadas.height;
+      const porcentX = (AbsolutePxX * 100) / faceCoordenadas.width;
 
       clicado.removeAttribute('style');
+      clicado.style.transform = transformBack;
       clicado.style.top = porcentY + '%';
       clicado.style.left = porcentX + '%';
 
       clicado.removeEventListener('mousemove', mouseMove);
       clicado.removeEventListener( 'mouseup', mouseUp);
     }
+  }
 
-
+  takeStyle(element) {
+    return 'scaleX(' + element.sizeX + ') scaleY(' + element.sizeY + ') rotate(' + element.rotate + 'deg)';
+  }
+  changeSizeX() {
+    if (this.selectPart !== -1) {
+      this.parts[this.selectPart].sizeX = this.control.controls.sizeX.value / 1000;
+      const elementSelect = document.querySelector('#' + this.parts[this.selectPart].id) as HTMLElement;
+      elementSelect.style.transform = this.takeStyle(this.parts[this.selectPart]);
+    }
   }
 
 

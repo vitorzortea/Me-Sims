@@ -1,16 +1,38 @@
 <div id="main-face">
-  <span id="rangers">
+  <span [formGroup]="control" id="rangers">
     <p>
       <i class="fas fa-arrows-alt-h"></i>
-      <input type="range" orient="vertical" />
+      <input
+        id="scroll-x"
+        formControlName="sizeX"
+        (mousemove)="changeSizeX()"
+        type="range"
+        orient="vertical"
+        min="500"
+        max="1500"
+      />
     </p>
     <p>
       <i class="fas fa-arrows-alt-v"></i>
-      <input type="range" orient="vertical" />
+      <input
+        formControlName="sizeY"
+        id="scroll-y"
+        type="range"
+        orient="vertical"
+        min="500"
+        max="1500"
+      />
     </p>
     <p>
       <i class="fas fa-sync-alt"></i>
-      <input type="range" orient="vertical" />
+      <input
+        formControlName="rotate"
+        id="scroll-deg"
+        type="range"
+        orient="vertical"
+        min="500"
+        max="1500"
+      />
     </p>
   </span>
   <img src="/assets/img/base.png" draggable="false" alt="Vitor Zortéa" />
@@ -19,7 +41,7 @@
     [part]="part"
     id={{part.id}}
     class="face-part"
-    (mousedown)="move($event, part.id)"
+    (mousedown)="move($event, part)"
   ></app-face-part>
   <span id="botoes">
     <button (click)="changeSelect('duplo', 2)">
@@ -28,10 +50,10 @@
     <button (click)="changeSelect('duplo', 0)">
       <img src="/assets/img/btn-2.png" alt="Olho">
     </button>
-    <button (click)="changeSelect('unico', 5)">
+    <button (click)="changeSelect('unico', 4)">
       <img src="/assets/img/btn-3.png" alt="Nariz">
     </button>
-    <button (click)="changeSelect('unico', 4)">
+    <button (click)="changeSelect('unico', 5)">
       <img src="/assets/img/btn-4.png" alt="Boca">
     </button>
   </span>

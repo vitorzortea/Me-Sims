@@ -8,6 +8,7 @@ import { SkillComponent } from './skill/skill.component';
 import { JobComponent } from './job/job.component';
 import { FacePartComponent } from './face-part/face-part.component';
 import { FaceControlComponent } from './face-control/face-control.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { FaceControlComponent } from './face-control/face-control.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
