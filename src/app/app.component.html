@@ -8,7 +8,19 @@
   </div>
   <app-face-control></app-face-control>
   <div id="info-vitor">
-    <h1><img src="/assets/img/logo.png" draggable="false" alt="Me Sims" /></h1>
+    <div>
+      <h1><img src="/assets/img/logo.png" draggable="false" alt="Me Sims" /></h1>
+      <div>
+        <span>
+          <i class="fal fa-street-view" routerLink="/profile" routerLinkActive="active"></i>
+          <i class="far fa-head-side-brain" routerLink="/skill" routerLinkActive="active"></i>
+          <i class="far fa-briefcase" routerLink="/job" routerLinkActive="active"></i>
+        </span>
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
   </div>
   <footer>
     <button id="full-vitor" (click)="resetface()">

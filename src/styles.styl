@@ -32,5 +32,29 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active
   transition: background-color 5000s ease-in-out 0s
 input[type=range][orient=vertical]
-        writing-mode: bt-lr;
-        -webkit-appearance: slider-vertical;
+  writing-mode: bt-lr
+  -webkit-appearance: slider-vertical
+
+p
+  font-size: 14px
+  padding-bottom: 1em
+
+::-webkit-scrollbar
+  width: 8px
+
+::-webkit-scrollbar-track
+  background: rgba(255, 255, 255, 0.3)
+  border: solid 1px #89ACD2
+  border-radius: 10px
+
+/* Handle */
+::-webkit-scrollbar-thumb
+  width: 14px
+  background-color: white
+  border: solid 1px #758DB1
+  height: 14px
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+  background: #758DB1
+

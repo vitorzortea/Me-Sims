@@ -41,10 +41,47 @@
   #info-vitor
     display: table
 
-    h1
-      display: table
-      max-width 250px
-      margin: 40px auto 10px
+    &>div
+      display: flex
+      flex-direction: column
+      max-width: 350px
+      margin: 0 10px 0 auto
+      max-height: calc(100vh - 40px)
+      padding: 0 10px
+      overflow-y: auto
+
+      h1
+        display: table
+        max-width 250px
+        margin: 40px auto 10px
+
+      &>div
+        width: 100%
+        margin-top: 20px
+        background-color: rgba(255,255,255,0.3)
+        display: table
+        border-radius: 10px
+
+        &>span
+          display: flex
+          justify-content: space-between
+          padding: 0 10px
+
+          i
+            padding: 20px
+            font-size: 32px
+            color: #394963
+            opacity: 0.8
+
+            &:hover, &.active
+              cursor pointer
+              background-color: rgba(255,255,255,0.3)
+              border-radius: 0 0 50px 50px
+
+        &>div
+          background-color: rgba(255,255,255,0.3)
+          margin: 10px
+          padding: 10px
 
   footer
     position: absolute
